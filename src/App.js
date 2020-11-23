@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { AddTeam } from './components/AddTeam'
+import { Body } from './components/Body'
+import { Fixure } from './components/Fixure'
 
-function App() {
+const App = () => {
+
+  const INITIAL_STATE = {
+    table: true,
+    addTeam: false,
+    fixure: false,
+  }
+
+  const [navBar, setNavBar] = useState(INITIAL_STATE)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <nav className="navbar-expand-md navbar navbar-dark bg-dark">
+        <div className='container'>
+          <a className="navbar-brand mb-0 h1" href="#" onClick={() => setNavBar(INITIAL_STATE)}>El Informante Deportivo</a>
+          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li className="nav-item">
+              <a className="nav-link" href="#" onClick={() => setNavBar({ addTeam: true })}>Agregar un Club</a>
+            </li>
+            <li className="nav-item">
+              {/* <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Fixure</a> */}
+              <a className="nav-link" href="#" onClick={() => setNavBar({ fixure: true })}>Fixure</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      {navBar.table &&
+        <div className='container'>
+          <Body />
+        </div>}
+      {navBar.addTeam &&
+        <div className='container'>
+          <AddTeam />
+        </div>}
+        {navBar.fixure &&
+        <div className='container'>
+          <Fixure />
+        </div>}
+    </>
+  )
 }
 
-export default App;
+export default App
