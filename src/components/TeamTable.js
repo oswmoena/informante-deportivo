@@ -35,7 +35,7 @@ export const TeamTable = () => {
                 <tbody>
                     {
                         teamList.map((team) => (
-                            <tr key={team.id}>
+                            <tr key={team.id} onClick={()=> console.log('click!', team.id)}>
                                 <td>{contador = contador + 1}</td>
                                 <td><img src={team.img} style={{maxHeight: '30px'}} alt={team.title} /></td>
                                 <td>{team.name}</td>
